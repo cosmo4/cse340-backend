@@ -4,3 +4,150 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+}
+
+html {
+  background-image: url("/images/site/checkerboard.jpg");
+}
+
+/* Header */
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: end;
+  background-color: white;
+  font-size: 2.5rem;
+  height: 70px;
+  color: black;
+}
+.siteName a,
+#tools a {
+  color: black;
+}
+
+.siteName {
+  padding: 10px 20px;
+  align-self: center;
+}
+
+#tools {
+  padding: 10px 20px;
+  justify-self: end;
+  align-self: center;
+  font-size: 1.2rem;
+}
+
+/* Navigation */
+nav {
+  background-color: black;
+  padding: 3px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+#navList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#navList li {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+#navList a:hover {
+  background-color: white;
+  color: black;
+  width: 100%;
+  display: block;
+}
+
+#navList li a {
+  color: white;
+  background-color: black;
+  width: 100%;
+  display: block;
+  padding: 10px 0;
+}
+
+/* Body */
+body {
+  width: 80%;
+  background-color: white;
+  margin: 30px auto;
+  padding: 0 30px;
+  border: 5px solid #00ffff;
+}
+
+/* Hero ad */
+#hero-ad {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+#hero-ad img {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+#label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  margin: 0 0 0 100px;
+  text-align: left;
+  box-sizing: border-box;
+}
+#label h2,
+#label ul,
+#label button {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#label button {
+  width: 80%;
+  padding: 5px 0;
+  background-color: #00ffff;
+}
+
+#label ul li {
+  margin: 10px 0;
+}
+
+/* Info section */
+
+#info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#upgradeItems {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+#upgradeItems div a {
+  display: block;
+  color: black;
+  text-align: center;
+  margin: 0 auto;
+  text-decoration: dashed solid black;
+}
+.upgrade-image-container img {
+  display: block;
+  margin: 0 auto;
+  height: 120px;
+  padding: 10px 0;
+}
+.upgrade-image-container {
+  width: 100%;
+  background-color: #00ffff;
+}
