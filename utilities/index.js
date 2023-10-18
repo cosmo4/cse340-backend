@@ -49,6 +49,54 @@ Util.buildClassificationGrid = async function(data) {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
+};
+
+Util.buildVehicleInfo = async function(vehicle) {
+  let display;
+  if (vehicle) {
+    display = `
+    <section id="vehicle-display">
+      <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
+      <div id="vehicle-img-div">
+        <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE motors"/>
+      </div>
+      <div id="vehicle-details">
+        <h3>${vehicle.inv_make} ${vehicle.inv_model} Details</h3>
+        <ul>
+          <li>
+            <h4>Price:</h4>
+            <span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>
+          </li>
+          <li>
+            <h4>Description:</h4>
+            <span>${vehicle.inv_description}</span>
+          </li>
+          <li>
+            <h4>Color:</h4>
+            <span>${vehicle.inv_color}</span>
+          </li>
+          <li>
+            <h4>Miles:</h4>
+            <span>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    `
+    return display;
+  } else {
+    display = `
+    <p>"This is not the vehicle you are looking for."<br>-Tatooine Wizard<br> Sorry, we couldn't find the vehicle you are searching for :/</p>
+    `
+    return display;
+  }
 }
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util;
