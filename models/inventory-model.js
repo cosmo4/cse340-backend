@@ -1,7 +1,7 @@
 const pool = require("../database/")
 
 async function getClassifications(){
-    return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
+    return await pool.query(`SELECT * FROM public.classification ORDER BY classification_name`)
 }
 
 async function getInventoryByClassificationId(classification_id) {
@@ -27,6 +27,7 @@ async function getVehicleByInventoryId(inventory_id) {
             [inventory_id]
         )
         return data.rows
+
     } catch (error) {
         console.log("getvehiclebyinventoryid error" + error)
     }

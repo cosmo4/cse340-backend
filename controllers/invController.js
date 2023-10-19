@@ -30,13 +30,13 @@ invCont.buildByInventoryId = async function (req, res, next) {
       return;
     }
 
-    const vehicleHtml = await utilities.buildVehicleInfo();
+    const display = await utilities.buildVehicleInfo(vehicleData);
     let nav = await utilities.getNav();
-    const vehicleName = data[0].inv_model;
-    res.render("../inventory/vehicleDetails", {
+    const vehicleName = vehicleData[0].inv_model;
+    res.render("./inventory/vehicleDetails", {
       title: vehicleName,
       nav,
-      vehicleHtml,
+      display
     })
   } catch (error) {
     next(error);

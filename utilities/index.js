@@ -51,8 +51,9 @@ Util.buildClassificationGrid = async function(data) {
   return grid
 };
 
-Util.buildVehicleInfo = async function(vehicle) {
+Util.buildVehicleInfo = async function(data) {
   let display;
+  let vehicle = data[0];
   if (vehicle) {
     display = `
     <section id="vehicle-display">
