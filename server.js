@@ -34,8 +34,21 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 
 // Error routes
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav();
+  let imgSrc = err.imgSrc
+  console.error(err + ': I hope that helps...');
+  res.status(500).render('errors/error', {
+    title: '500 Internal Server Error',
+    nav,
+    imgSrc
+  });
+});
+
+app.get("/error", baseController.buildCaughtError);
+
 app.use(async (req,res, next) => {
-  next({status: 404, message: 'Sorry, accessing the dark web through our page is not allowed :/'})
+  next({status: 404, message: 'Sorry, Johnny had a hard time finding what you were looking for :/', imgSrc: '/images/site/confusion.gif'})
 })
 
 /* ***********************
@@ -44,12 +57,19 @@ app.use(async (req,res, next) => {
 *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
+  let imgSrc = err.imgSrc
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  if(err.status == 404){ 
+    message = err.message
+  } else {
+    message = 'Oh no! There was a crash. Maybe try a different route?'
+    imgSrc = ''
+  }
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
-    nav
+    nav,
+    imgSrc
   })
 })
 
