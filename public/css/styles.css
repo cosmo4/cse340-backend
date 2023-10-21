@@ -183,7 +183,7 @@ h2 {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
-  padding: 10px 5px;
+  padding: 20px 30px;
 }
 
 .inv-classifications a{
@@ -395,7 +395,7 @@ h2 {
 
   #inv-display {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 
   .inv-classifications:hover {
