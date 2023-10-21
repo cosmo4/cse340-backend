@@ -53,7 +53,7 @@ nav a {
 }
 #navList {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -165,6 +165,60 @@ h2 {
   font-size: 1rem;
 }
 
+/* Classification page */
+
+#inv-display {
+  display: grid;
+  width: 80%;
+  grid-template-columns: 1fr;
+  padding: 0 auto;
+  margin: 0;
+  gap: 20px;
+  justify-content: center;
+}
+
+.inv-classifications {
+  list-style: none;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 10px 5px;
+}
+
+.inv-classifications a{
+  color: black;
+}
+
+.inv-classifications img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+/* Vehicle details page */
+
+#vehicle-display {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#vehicle-img-div img {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+#vehicle-details ul li {
+  list-style: none;
+}
+
+
+
+/* Large view css rules */
+
 @media (min-width: 650px) {
   html {
     background-image: url("/images/site/checkerboard.jpg");
@@ -213,7 +267,7 @@ h2 {
   }
   #navList {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -336,4 +390,22 @@ h2 {
     margin: 15px 0;
     font-size: 1.5rem;
   }
+
+  /* Classifications page */
+
+  #inv-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .inv-classifications:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  /* Vehicle details page */
+  
+  #vehicle-display {
+    grid-template-columns: 1fr 1fr;
+  }
+
 }

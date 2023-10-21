@@ -3,7 +3,7 @@ const Util = {};
 
 Util.getNav = async function(req, res, next) {
   let data = await invModel.getClassifications();
-  let list = "<ul>";
+  let list = '<ul id="navList">';
   list += '<li><a href="/" title="Home page">Home</a></li>';
   data.rows.forEach((row) => {
     list += "<li>";
@@ -26,7 +26,7 @@ Util.buildClassificationGrid = async function(data) {
   if(data.length > 0){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
-      grid += '<li>'
+      grid += '<li class="inv-classifications">'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
       + 'details"><img src="' + vehicle.inv_thumbnail 
@@ -56,8 +56,8 @@ Util.buildVehicleInfo = async function(data) {
   let vehicle = data[0];
   if (vehicle) {
     display = `
+    <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
     <section id="vehicle-display">
-      <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
       <div id="vehicle-img-div">
         <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE motors"/>
       </div>
@@ -65,20 +65,20 @@ Util.buildVehicleInfo = async function(data) {
         <h3>${vehicle.inv_make} ${vehicle.inv_model} Details</h3>
         <ul>
           <li>
-            <h4>Price:</h4>
-            <span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>
+            <h4>Price:
+            <span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span></h4>
           </li>
           <li>
             <h4>Description:</h4>
             <span>${vehicle.inv_description}</span>
           </li>
           <li>
-            <h4>Color:</h4>
-            <span>${vehicle.inv_color}</span>
+            <h4>Color:
+            <span>${vehicle.inv_color}</span></h4>
           </li>
           <li>
-            <h4>Miles:</h4>
-            <span>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</span>
+            <h4>Miles:
+            <span>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</span></h4>
           </li>
         </ul>
       </div>
