@@ -215,7 +215,12 @@ h2 {
   list-style: none;
 }
 
+/* Error Page */
 
+#errorImg {
+  width: 80%;
+  max-width: 600px;
+}
 
 /* Large view css rules */
 
