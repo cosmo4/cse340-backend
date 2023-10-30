@@ -42,6 +42,14 @@ header {
   font-size: 1rem;
 }
 
+.notice {
+  list-style: none;
+  padding: 10px;
+  background-color: #77f8f8;
+  font-style: italic;
+  border-radius: 10px;
+}
+
 nav {
   background-color: black;
   padding: 3px;
@@ -213,6 +221,74 @@ h2 {
 
 #vehicle-details ul li {
   list-style: none;
+}
+
+/* Login Form page */
+
+.user-form {
+  width: 80%;
+  display: block;
+  margin: 20px auto 200px;
+  padding: 50px;
+  background-color: #cfcfcf;
+  box-shadow: 0 8px 16px 0 rgb(0, 0, 0, 0.5);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.user-form label {
+  font-size: 1.5rem;
+}
+
+.user-form input {
+  height: 30px;
+  width: 100%;
+  margin: 5px 0 20px;
+  font-size: 1.4rem;
+}
+#login-h1 {
+  display: block;
+  margin: 50px auto 15px;
+  text-align: center;
+  font-size: 2rem;
+}
+.user-form button {
+  width: 60%;
+  height: 40px;
+  margin: 20px auto 0;
+  font-size: 1.2rem;
+  background-color: #00ffff;
+  color: black;
+}
+
+/* Registration form page */
+
+#registration-h1 {
+  margin: 0 0 40px;
+  font-size: 1.5rem;
+}
+
+#register-form {
+  text-align: left;
+  margin: 80px auto 150px;
+}
+
+#register-form input {
+  font-size: 1rem;
+}
+#register-button-div {
+  text-align: center;
+}
+
+/* Input validation */
+
+input:required:invalid, input:focus:invalid {
+  border: 2px solid rgb(249, 102, 102);
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.5);
+ }
+
+input:required:valid {
+  background-color: white
 }
 
 /* Error Page */
@@ -411,6 +487,26 @@ h2 {
   
   #vehicle-display {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* Login Form page */
+  
+  .user-form {
+    max-width: 500px;
+    text-align: left;
+    
+  }
+  #login-button-div {
+    text-align: center;
+  }
+  .user-form button {
+    width: 150px;
+  }
+
+  /* Register form page */
+
+  #registration-h1 {
+    font-size: 2rem;
   }
 
 }
