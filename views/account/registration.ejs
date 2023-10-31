@@ -1,5 +1,13 @@
 <%- messages() %>
 
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+<%  }) %>
+    </ul>
+<% } %>
+
 <form action="/account/registration" method="post" class="user-form" id="register-form">
     <% if (title) { %>
         <h1 id="registration-h1"> <%- title %> </h1>
