@@ -15,13 +15,13 @@
         res.redirect('/')
     } %>
     <label for="account_firstname">First Name:</label>
-    <input type="text" name="account_firstname" placeholder="Enter your first name..." required>
+    <input type="text" name="account_firstname" placeholder="Enter your first name..." required value="<%= locals.account_firstname %>">
 
     <label for="account_lastname">Last Name:</label>
-    <input type="text" name="account_lastname" placeholder="Enter your last name..." required>
+    <input type="text" name="account_lastname" placeholder="Enter your last name..." required value="<%= locals.account_lastname %>">
 
     <label for="account_email">Email:</label>
-    <input type="email" name="account_email" placeholder="Enter your email..." required>
+    <input type="email" name="account_email" placeholder="Enter your email..." required value="<%= locals.account_email %>">
 
     <label for="account_password">Password:</label>
     <span></span> 
