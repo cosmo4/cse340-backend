@@ -7,5 +7,9 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 
 router.get('/detail/:vehicleId', utilities.handleErrors(invController.buildByInventoryId));
 
+router.get('/', utilities.handleErrors(invController.buildManagement));
+
+router.get('/add-classification', utilities.handleErrors(invController.buildAddClassification));
+
 
 module.exports = router;

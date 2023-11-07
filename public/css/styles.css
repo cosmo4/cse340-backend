@@ -291,6 +291,20 @@ input:required:valid {
   background-color: white
 }
 
+/* Vehicle management page */
+
+#manage-links {
+  font-size: 1.3rem;
+  list-style: none;
+  background-color: #cfcfcf;
+}
+#manage-links li {
+  padding: 10px;
+}
+#add-classification-btn {
+  width: auto;
+}
+
 /* Error Page */
 
 #errorImg {
