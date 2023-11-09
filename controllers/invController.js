@@ -61,5 +61,33 @@ invCont.buildAddClassification = async function (req, res, next) {
   })
 }
 
+// Process Adding classification
+invCont.addClassification = async function (req, res) {
+  
+  const { classification_name } = req.body
+
+  const addResult = await invModel.addClassification(classification_name)
+
+  if (addResult) {
+    req.flash(
+      "notice",
+      `Successfully added ${classification_name} to Classifications!`
+    )
+    let nav = await utilities.getNav()
+    res.status(201).render("./inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      errors: null
+    })
+  } else {
+    req.flash("notice", "Sorry, adding the classification failed. Please try again.")
+    res.status(501).render("./inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      errors: null
+    })
+  }
+}
+
 
 module.exports = invCont
