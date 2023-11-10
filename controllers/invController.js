@@ -74,8 +74,8 @@ invCont.addClassification = async function (req, res) {
       `Successfully added ${classification_name} to Classifications!`
     )
     let nav = await utilities.getNav()
-    res.status(201).render("./inventory/add-classification", {
-      title: "Add Classification",
+    res.status(201).render("./inventory/management", {
+      title: "Vehicle Management",
       nav,
       errors: null
     })
@@ -101,9 +101,9 @@ invCont.buildAddInventory = async function (req, res, next) {
 }
 
 invCont.addInventory = async function (req, res, next) {
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
 
-  const addResult = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color)
+  const addResult = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
 
   if (addResult) {
     req.flash(
@@ -111,11 +111,9 @@ invCont.addInventory = async function (req, res, next) {
       `Successfully added ${inv_make} ${inv_model} to Inventory!`
     )
     let nav = await utilities.getNav()
-    let options = await utilities.buildClassificationOptions()
-    res.status(201).render("./inventory/add-inventory", {
-      title: "Add Inventory",
+    res.status(201).render("./inventory/management", {
+      title: "Vehicle Management",
       nav,
-      options,
       errors: null
     })
   } else {
@@ -126,7 +124,17 @@ invCont.addInventory = async function (req, res, next) {
       title: "Add Inventory",
       nav,
       options,
-      errors: null
+      errors: null,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
     })
   }
 }

@@ -74,7 +74,7 @@ Util.buildVehicleInfo = async function(data) {
           </li>
           <li>
             <h4>Color:
-            <span>${vehicle.inv_color}</span></h4>
+            <span>${vehicle.inv_color.charAt(0).toUpperCase() + vehicle.inv_color.slice(1)}</span></h4>
           </li>
           <li>
             <h4>Miles:
@@ -94,11 +94,11 @@ Util.buildVehicleInfo = async function(data) {
 }
 Util.buildClassificationOptions = async function (req, res, next) {
   let data = await invModel.getClassifications();
-  let html;
-  data.rows.forEach((row) => {
-    html += `<option value="${row.classification_id}">${row.classification_name}</option>`
-  });
-  return html;
+    let options = data.rows.map(row => ({
+        value: row.classification_id,
+        label: row.classification_name,
+    }));
+    return options;
 }
 
 /* ****************************************

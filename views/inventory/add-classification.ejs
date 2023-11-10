@@ -17,7 +17,7 @@
 <form action="/inv/add-classification" method="post" class="user-form" id="add-classification-form">
     <label for="classification_name">Classification Name</label>
     <p>Name must be only alphabetic characters and have no spaces</p>
-    <input type="text" required name="classification_name" pattern="^[A-Za-z]+$">
+    <input type="text" required id="classification_name" name="classification_name" pattern="^[A-Za-z]+$" placeholder="Ex: Electric">
 
     <button type="submit" id="add-classification-btn">Add Classification</button>
 

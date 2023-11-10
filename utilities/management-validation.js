@@ -42,4 +42,88 @@ validate.checkAddClassData = async (req, res, next) => {
     next()
 }
 
+// Add inventory validation rules
+validate.addInvRules = () => {
+    return [
+        body("inv_make")
+        .trim()
+        .isLength({ min: 3 })
+        .withMessage("Make must be at least 3 characters"),
+
+        body("inv_model")
+        .trim()
+        .isLength({ min: 3 })
+        .withMessage("Model must be at least 3 characters"),
+
+        body("inv_year")
+        .trim()
+        .isLength({ min: 4 })
+        .matches(/^(19[0-9]\d|20\d{2})$/)
+        .withMessage("Year must be 4 digits and between 1900-2099"),
+
+        body("inv_description")
+        .trim()
+        .isLength({ min: 3, max: 1000 })
+        .withMessage("Description must be between 3 and 1000 characters"),
+
+        body("inv_image")
+        .trim()
+        .matches(/\.(jpg|jpeg|png|webp)$/)
+        .withMessage("Image must be jpg, jpeg, png, or webp format"),
+
+        body("inv_thumbnail")
+        .trim()
+        .matches(/\.(jpg|jpeg|png|webp)$/)
+        .withMessage("Image must be jpg, jpeg, png, or webp format"),
+
+        body("inv_price")
+        .trim()
+        .matches(/^\d+(\.\d{1,2})?$/)
+        .withMessage("Price must be numbers only, no dollar sign needed"),
+
+        body("inv_miles")
+        .trim()
+        .matches(/^[0-9]{1,7}$/)
+        .withMessage("Miles must be a number between 0 and 9,999,999 without commas"),
+
+        body("inv_color")
+        .trim()
+        .matches(/^[a-z]{3,}$/)
+        .withMessage("Color must be lowercase letters and at least 3 characters"),
+
+        body("classification_id")
+        .matches(/^[0-9]$/)
+        .withMessage("Please select a classification from the dropdown")
+    ]
+};
+
+// Check add Inv data and return errors or continue
+validate.checkAddInvData = async (req, res, next) => {
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let options = await utilities.buildClassificationOptions()
+        res.render("./inventory/add-inventory", {
+            errors,
+            title: "Add Inventory",
+            nav,
+            options,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_color,
+            classification_id,
+        })
+        return
+    }
+    next()
+}
+
 module.exports = validate

@@ -20,4 +20,10 @@ router.post(
 
 router.get('/add-inventory', utilities.handleErrors(invController.buildAddInventory));
 
+router.post(
+    '/add-inventory',
+    addValidate.addInvRules(),
+    addValidate.checkAddInvData,
+    utilities.handleErrors(invController.addInventory));
+
 module.exports = router;
