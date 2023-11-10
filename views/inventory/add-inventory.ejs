@@ -14,13 +14,6 @@
     </ul>
 <% } %>
 
-<!-- Debugging output -->
-<%
-    console.log("Classification ID in locals:", locals.classification_id);
-    console.log("Options:", options);
-%>
-
-
 <form action="/inv/add-inventory" method="post" class="user-form" id="add-inventory-form">
     <label for="classification_id">Classification:</label>
     <select name="classification_id" id="classification_id" required>
