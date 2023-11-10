@@ -81,7 +81,7 @@ nav a {
 }
 h1 {
   font-size: 1.2rem;
-  margin: 25px 0 0;
+  margin: 25px 0 0 40px;
 }
 #hero-ad {
   width: 100%;
@@ -282,8 +282,8 @@ h2 {
 
 /* Input validation */
 
-input:required:invalid, input:focus:invalid {
-  border: 2px solid rgb(249, 102, 102);
+input:not(:placeholder-shown):invalid {
+  border: 3px solid rgb(249, 102, 102);
   box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.5);
  }
 
@@ -304,6 +304,31 @@ input:required:valid {
 #add-classification-btn {
   width: auto;
 }
+
+/* Add Inventory form page */
+#classification_id {
+  font-size: 1rem;
+  margin: 0 0 30px;
+}
+
+#classification_id option {
+  font-size: 1rem;
+}
+#add-inventory-form {
+  text-align: left;
+}
+#add-inventory-form input, #add-inventory-form textarea {
+  margin-bottom: 20px;
+}
+#add-inventory-form input, #add-inventory-form textarea, #add-inventory-form label {
+  font-size: 1rem;
+  display: block;
+}
+#add-inventory-form textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
 
 /* Error Page */
 
@@ -523,4 +548,18 @@ input:required:valid {
     font-size: 2rem;
   }
 
+  /* Add inventory form */
+  #classification_id {
+    font-size: 1.3rem;
+  }
+  
+  #classification_id option {
+    font-size: 1.2rem;
+  }
+  #add-inventory-form input, #add-inventory-form textarea, #add-inventory-form label {
+    font-size: 1.2rem;
+  }
+  #add-inventory-form label {
+    width: 100%;
+  }
 }

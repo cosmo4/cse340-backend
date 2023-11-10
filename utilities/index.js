@@ -92,6 +92,14 @@ Util.buildVehicleInfo = async function(data) {
     return display;
   }
 }
+Util.buildClassificationOptions = async function (req, res, next) {
+  let data = await invModel.getClassifications();
+  let html;
+  data.rows.forEach((row) => {
+    html += `<option value="${row.classification_id}">${row.classification_name}</option>`
+  });
+  return html;
+}
 
 /* ****************************************
  * Middleware For Handling Errors

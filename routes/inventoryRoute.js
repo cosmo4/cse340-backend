@@ -18,5 +18,6 @@ router.post(
     addValidate.checkAddClassData,
     utilities.handleErrors(invController.addClassification));
 
+router.get('/add-inventory', utilities.handleErrors(invController.buildAddInventory));
 
 module.exports = router;
