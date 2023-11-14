@@ -329,6 +329,10 @@ input:required:valid, textarea:required:valid {
   max-width: 100%;
   caret-color: black;
 }
+#add-inventory-btn {
+  width: auto;
+  height: 40px;
+}
 
 
 /* Error Page */
@@ -562,5 +566,8 @@ input:required:valid, textarea:required:valid {
   }
   #add-inventory-form label {
     width: 100%;
+  }
+  #add-inventory-btn {
+    height: 40px;
   }
 }

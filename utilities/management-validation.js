@@ -88,8 +88,8 @@ validate.addInvRules = () => {
 
         body("inv_color")
         .trim()
-        .matches(/^[a-z]{3,}$/)
-        .withMessage("Color must be lowercase letters and at least 3 characters"),
+        .matches(/^[a-zA-Z]{3,}$/)
+        .withMessage("Color must be only alphabetic letters and at least 3 characters"),
 
         body("classification_id")
         .matches(/^[0-9]$/)
