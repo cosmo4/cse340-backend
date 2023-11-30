@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const pool = require('./database/')
 const express = require("express")
@@ -33,6 +34,8 @@ app.use(session({
   name: 'sessionId',
 }))
 
+app.use(cookieParser())
+
 // Express MEssages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next) {
@@ -43,6 +46,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
