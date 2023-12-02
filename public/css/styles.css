@@ -317,29 +317,74 @@ input:required:valid, textarea:required:valid {
 #add-inventory-form {
   text-align: left;
 }
-#add-inventory-form input, #add-inventory-form textarea {
+#add-inventory-form input, #add-inventory-form textarea, #edit-inventory-form input, #edit-inventory-form textarea {
   margin-bottom: 20px;
 }
-#add-inventory-form input, #add-inventory-form textarea, #add-inventory-form label {
+#add-inventory-form input,
+#add-inventory-form textarea,
+#add-inventory-form label,
+#edit-inventory-form input,
+#edit-inventory-form textarea,
+#edit-inventory-form label {
   font-size: 1rem;
   display: block;
 }
-#add-inventory-form textarea {
+#add-inventory-form textarea, #edit-inventory-form textarea {
   width: 100%;
   max-width: 100%;
   caret-color: black;
 }
-#add-inventory-btn {
+#add-inventory-btn, #edit-inventory-btn {
   width: auto;
   height: 40px;
 }
-
+#edit-inventory-btn:disabled {
+  background-color: #adadad
+}
 
 /* Error Page */
 
 #errorImg {
   width: 80%;
   max-width: 600px;
+}
+
+/* Table view inventory management */
+#manage-section {
+  margin-left: 40px;
+}
+
+#classification_id {
+  height: 30px
+}
+
+#inventoryDisplay table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style the table header */
+#inventoryDisplay th {
+  background-color: #dddcdc;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style the table body */
+#inventoryDisplay td {
+  padding: 8px 15px;
+  border: 1px solid black;
+}
+
+/* Style the table rows */
+#inventoryDisplay tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/* Style the links */
+#inventoryDisplay a {
+  color: blue;
+  text-decoration: none;
 }
 
 /* Large view css rules */
@@ -561,10 +606,15 @@ input:required:valid, textarea:required:valid {
   #classification_id option {
     font-size: 1.2rem;
   }
-  #add-inventory-form input, #add-inventory-form textarea, #add-inventory-form label {
+  #add-inventory-form input, 
+  #add-inventory-form textarea, 
+  #add-inventory-form label,
+  #edit-inventory-form input,
+  #edit-inventory-form textarea,
+  #edit-inventory-form label {
     font-size: 1.2rem;
   }
-  #add-inventory-form label {
+  #add-inventory-form label , #edit-inventory-form label {
     width: 100%;
   }
   #add-inventory-btn {
