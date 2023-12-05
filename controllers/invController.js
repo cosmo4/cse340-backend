@@ -243,7 +243,6 @@ invCont.deleteInventory = async function (req, res, next) {
   const deleteResult = await invModel.deleteInventory(inv_id)
 
   if (deleteResult) {
-    const vehicleName = `${deleteResult.inv_make} ${deleteResult.inv_model}`
     req.flash(
       "notice",
       `Successfully deleted vehicle`

@@ -8,7 +8,7 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 
 router.get('/detail/:vehicleId', utilities.handleErrors(invController.buildByInventoryId));
 
-router.get('/', utilities.handleErrors(invController.buildManagement));
+router.get('/', utilities.checkLogin, utilities.checkPermissions, utilities.handleErrors(invController.buildManagement));
 
 router.get('/add-classification', utilities.handleErrors(invController.buildAddClassification));
 
@@ -28,7 +28,7 @@ router.post(
 
 router.get('/getInventory/:classification_id', utilities.handleErrors(invController.getInventoryJSON));
 
-router.get('/edit/:inv_id', utilities.handleErrors(invController.buildEditInventory));
+router.get('/edit/:inv_id', utilities.checkPermissions, utilities.handleErrors(invController.buildEditInventory));
 
 router.post('/update', 
     addValidate.addInvRules(),

@@ -3,7 +3,13 @@ const baseController = {}
 
 baseController.buildHome = async function(req, res) {
     const nav = await utilities.getNav()
-    res.render("index", {title: "Home", nav, errors: null,})
+    const loggedIn = res.locals.loggedIn
+    res.render("index", {
+      title: "Home", 
+      nav, 
+      errors: null,
+      loggedIn
+    })
 }
 
 baseController.buildCaughtError = async function(req, res) {

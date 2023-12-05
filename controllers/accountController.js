@@ -113,6 +113,7 @@ async function buildAccountManagement(req, res) {
         title: "Account Management",
         nav,
         errors: null,
+        accountData,
     })
 }
 

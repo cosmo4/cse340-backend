@@ -115,6 +115,7 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 **************************************** */
 
 Util.checkJWTToken = (req, res, next) => {
+  res.locals.loggedIn = false
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt, 
@@ -126,7 +127,7 @@ Util.checkJWTToken = (req, res, next) => {
           return res.redirect("/account/login")
         }
         res.locals.accountData = accountData
-        res.locals.loggedIn = true // Change from 1 to true
+        res.locals.loggedIn = true
         next()
       })
   } else {
@@ -140,6 +141,23 @@ Util.checkLogin = (req, res, next) => {
     next()
   } else {
     req.flash("notice", "Please log in to view this page.")
+    return res.redirect("/account/login")
+  }
+}
+
+// Middleware to check if user has admin permissions
+Util.checkPermissions = (req, res, next) => {
+  const accountData = res.locals.accountData
+  if (accountData && accountData.account_type) {
+    if (accountData.account_type == "Employee" || accountData.account_type == "Admin") {
+      next()
+    }
+    else {
+      req.flash("notice", "You do not have permission to access this resource.");
+      res.redirect("/");
+    }
+  } else {
+    req.flash("notice", "You do not have permission to view this page. Please log in.")
     return res.redirect("/account/login")
   }
 }
