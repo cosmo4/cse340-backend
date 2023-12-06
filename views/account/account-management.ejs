@@ -6,7 +6,7 @@
 
 <%- messages() %>
 
-<h2>Welcome, <%= accountData.account_firstname %></h2>
+<h2 class="paddingLeft">Welcome, <%= accountData.account_firstname %></h2>
 
 <% if (errors) { %>
     <ul class="notice">
@@ -16,11 +16,12 @@
     </ul>
 <% } %>
 
-<a href="/account/update-account">Update Account Information</a>
+<a href="/account/update-account" class="accountManageLink paddingLeft">Update Account Information</a>
 
 <% if (accountData.account_type === 'Employee' || accountData.account_type === 'Admin' ) { %>
-    <div id="manager-account-management">
+    <div id="manager-account-management" class="paddingLeft">
         <h3>Inventory Management</h3>
-        <a href="/inv/"><p>Click here to manage</p></a>
+        <a href="/inv/" class="accountManageLink"><p>Click here to manage</p></a>
     </div>
 <% } %>
+<div id="bottomSpace"></div>

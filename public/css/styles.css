@@ -334,11 +334,12 @@ input:required:valid, textarea:required:valid {
   max-width: 100%;
   caret-color: black;
 }
-#add-inventory-btn, #edit-inventory-btn {
+#add-inventory-btn, #edit-inventory-btn, #update-account-btn, #change-password-btn {
   width: auto;
-  height: 40px;
+  min-height: 40px;
+  height: auto;
 }
-#edit-inventory-btn:disabled {
+#edit-inventory-btn:disabled, #update-account-btn:disabled {
   background-color: #adadad
 }
 
@@ -385,6 +386,28 @@ input:required:valid, textarea:required:valid {
 #inventoryDisplay a {
   color: blue;
   text-decoration: none;
+}
+
+#update-account-form, #update-password-form {
+  margin: 0 auto;
+  width: 80%;
+  text-align: left;
+}
+
+.paddingLeft {
+  margin-left: 40px;
+}
+.account-links {
+  margin-left: 15px;
+}
+#bottomSpace {
+  margin-bottom: 200px;
+}
+.accountManageLink {
+  font-size: 1.3rem;
+}
+#manager-account-management h3 {
+  margin: 40px 0;
 }
 
 /* Large view css rules */

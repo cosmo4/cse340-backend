@@ -110,6 +110,8 @@ async function accountLogin(req, res) {
 async function buildAccountManagement(req, res) {
     let nav = await utilities.getNav()
     let {accountData} = res.locals
+    res.locals.accountData = await accountModel.getAccountById(accountData.account_id)
+    accountData = res.locals.accountData
     res.render("account/account-management", {
         title: "Account Management",
         nav,
@@ -124,6 +126,8 @@ async function buildAccountManagement(req, res) {
 async function buildUpdateAccount(req, res) {
     let nav = await utilities.getNav()
     let {accountData} = res.locals
+    res.locals.accountData = await accountModel.getAccountById(accountData.account_id)
+    accountData = res.locals.accountData
     const account_id = accountData.account_id
     const account_firstname = accountData.account_firstname
     const account_lastname = accountData.account_lastname
@@ -151,13 +155,13 @@ async function updateAccount(req, res, next) {
     )
     if (updateResult) {
         res.locals.accountData = await accountModel.getAccountById(accountData.account_id)
-        accountData = res.locals.accountData
+        let accountData1 = res.locals.accountData
         req.flash("notice", "Account updated successfully.")
         res.status(201).render("account/account-management", {
             title: "Account Management",
             nav,
             errors: null,
-            accountData
+            accountData1
         })
     } else {
         req.flash("notice", "Sorry, the update failed. Please try again.")
