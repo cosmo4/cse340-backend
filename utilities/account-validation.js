@@ -103,5 +103,47 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+/*  **********************************
+ *  Update Account Data Validation Rules
+ * ********************************* */
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."),
+
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 2 })
+      .withMessage("Please provide a last name."),
+
+    body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required."),
+  ]
+};
+
+validate.checkUpdateData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      res.render("account/update-account", {
+          errors,
+          title: "Update Account",
+          nav,
+          account_firstname,
+          account_lastname,
+          account_email,
+      })
+      return
+  }
+  next()
+}
+
 
 module.exports = validate

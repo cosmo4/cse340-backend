@@ -96,6 +96,7 @@ async function accountLogin(req, res) {
             delete accountData.account_password
             const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
             res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+            req.flash("notice", "You're logged in!")
             return res.redirect("/account/")
         }
     } catch (error) {
@@ -117,4 +118,58 @@ async function buildAccountManagement(req, res) {
     })
 }
 
-module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildAccountManagement }
+/* ****************************************
+ *  Deliver Update Account View
+ * ************************************ */
+async function buildUpdateAccount(req, res) {
+    let nav = await utilities.getNav()
+    let {accountData} = res.locals
+    const account_id = accountData.account_id
+    const account_firstname = accountData.account_firstname
+    const account_lastname = accountData.account_lastname
+    const account_email = accountData.account_email
+    res.render("account/update-account", {
+        title: "Update Account",
+        nav,
+        errors: null,
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email
+    })
+}
+
+/* ****************************************
+ *  Process Update Account
+ * ************************************ */
+async function updateAccount(req, res, next) {
+    let nav = await utilities.getNav()
+    let {accountData} = res.locals
+    let { account_id, account_firstname, account_lastname, account_email } = req.body
+    const updateResult = await accountModel.updateAccount(
+        account_firstname, account_lastname, account_email, accountData.account_id
+    )
+    if (updateResult) {
+        res.locals.accountData = await accountModel.getAccountById(accountData.account_id)
+        accountData = res.locals.accountData
+        req.flash("notice", "Account updated successfully.")
+        res.status(201).render("account/account-management", {
+            title: "Account Management",
+            nav,
+            errors: null,
+            accountData
+        })
+    } else {
+        req.flash("notice", "Sorry, the update failed. Please try again.")
+        res.status(501).render("account/update-account", {
+            title: "Update Account",
+            nav,
+            errors: null,
+            account_id, account_firstname, account_lastname, account_email
+        })
+    }
+}
+
+
+
+module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildAccountManagement, buildUpdateAccount, updateAccount }
